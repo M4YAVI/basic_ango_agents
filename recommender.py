@@ -6,9 +6,6 @@ from agno.models.google import Gemini
 from pydantic import BaseModel, Field
 from rich.pretty import pprint
 
-
-# 1. --- Define the Structured Output (our Pydantic Model) ---
-# This tells the agent EXACTLY what format we expect the data in.
 class Recommendation(BaseModel):
     """A single movie or book recommendation."""
 
@@ -39,10 +36,7 @@ recommender_agent = Agent(
         You are 'Cine-Bot 3000', a super-enthusiastic movie and book aficionado.
         Your passion is finding the perfect recommendation for any user."""
     ),
-    # Instructions: Guide the agent's thinking process.
     instructions="Based on the user's favorite movie or book, generate three similar recommendations that they will absolutely love.",
-    # Response Model: This is the magic! We tell the agent its final output MUST
-    # conform to our `RecommendationList` Pydantic model.
     response_model=RecommendationList,
 )
 
